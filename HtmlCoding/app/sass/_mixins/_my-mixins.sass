@@ -1,0 +1,13 @@
+@import "../vars"
+
+@mixin hover-link($color: $accent, $time: .5s)
+  &:visited
+    color: $text-on-wight
+  &:hover
+    transition: .5s
+    color: $color
+    text-decoration: none
+  &:active
+    color: lighten($accent, 10%)
+  &:active, &:focus, &:visited
+    text-decoration: none
