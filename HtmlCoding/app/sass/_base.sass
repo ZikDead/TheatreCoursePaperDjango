@@ -1,0 +1,64 @@
+// Main styles
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+html, body
+	height: 100%
+
+a
+	color: #000
+	text-decoration: none
+	&:active
+		color: #000
+		text-decoration: none
+		border: none
+		outline: none
+	&:hover
+		color: $color-accent-red
+		transition: .5s
+		text-decoration: none
+	&:focus
+		text-decoration: none
+		color: $color-accent-red
+
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	overflow-x: hidden
+	opacity: 1
+
+.img-responsive
+  display: block
+  max-width: 100%
+  height: auto
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+

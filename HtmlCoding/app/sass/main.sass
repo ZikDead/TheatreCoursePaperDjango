@@ -2,205 +2,25 @@
 @import "libs"
 @import "vars"
 
-// Main styles
-*::-webkit-input-placeholder
-	color: #666
-	opacity: 1
 
-*:-moz-placeholder
-	color: #666
-	opacity: 1
+// Base
+@import "base"
+@import "layout/header"
+@import "layout/footer"
 
-*::-moz-placeholder
-	color: #666
-	opacity: 1
+// Home.html
+@import "layout/greeting"
+@import "pages/home"
 
-*:-ms-input-placeholder
-	color: #666
-	opacity: 1
-
-body input:focus:required:invalid,
-body textarea:focus:required:invalid
-	color: #666
-body input:required:valid,
-body textarea:required:valid
-	color: #666
-
-html, body
-	height: 100%
-
-a
-	color: $text-on-wight
-	text-decoration: none
-	@include hover-link()
+//Work.html
+@import "layout/schedule"
+@import "layout/perfomances"
 
 
-body
-	font-size: 16px
-	min-width: 320px
-	position: relative
-	line-height: 1.75
-	font-family: $default-font
-	overflow-x: hidden
-	opacity: 1
 
 
-.img-responsive
-	display: block
-	max-width: 100%
-	height: auto
 
 
-// Header
-header
-	background-color: $second-accent
-	width: 100%
-	height: 50px
-	a
-		line-height: 50px
-		vertical-align: middle
-		color: $text-on-wight
-		margin-left: 10px
-		margin-right: 20px
-	.left-side
-		float: left
-	.right-side
-		float: right
-	//Home page
-	&.header-absolute
-		position: absolute
-		z-index: 1
 
 
-// Work
-// Shedule
-.section-schedule
-	background-color: #EEF2F5
-	.container
-		position: relative
-		height: 150px
-	h2
-		width: 100%
-		text-align: center
-		font-size: 25px
-		font-weight: bold
-		line-height: 50px
-		vertical-align: middle
-	a
-		position: absolute
-		font-size: 30px
-	.left-pagination
-		left: 0
-		top: 40%
-	.right-pagination
-		top: 40%
-		right: 0
-	i
-		color: $second-accent
-		@include hover-link()
-	.menu
-		height: 100px
-		margin-left: 23px
-		margin-right: 23px
-		&>div
-			height: 100px
-			width: 100%
-			position: relative
-			&:active, &:focus
-				outline: 0
-				border: none
-		a
-			font-size: 20px
-			width: 100%
-			position: relative
-			color: $second-accent
-			height: 100px
-
-			&:focus
-				outline: none
-				border: none
-				color: $accent
-				transition: .2s
-		p
-			text-align: center
-			width: 100%
-		span
-			text-align: center
-			display: inline-block
-			width: 100%
-			font-size: 15px
-
-
-// Perfomances
-.section-perfomances
-	min-height: 800px
-
-.perfomance-item
-
-	margin-bottom: 20px
-	margin-top: 10px
-	height: 240px
-	.poster
-		float: left
-		background-size: cover
-		background-position: top
-		height: 240px
-		margin-right: 20px
-		width: 150px
-
-	.info
-		float: left
-		a
-			color: #000
-	.sessions
-		.time
-			font-size: 18px
-			color: #000
-			&:visited
-				color: #000
-			&:hover
-				transition: .5s
-				color: $accent
-				text-decoration: none
-			&:active
-				color: lighten($accent, 10%)
-			&:active, &:focus, &:visited
-				text-decoration: none
-
-// Section greeting
-.section-greeting
-	height: 100vh
-	position: relative
-	background-position: center center
-
-
-.div-greeting-center
-	position: absolute
-	top: 40%
-	left: 50%
-	transform: translateY(-50%)
-	transform: translateX(-50%)
-	padding: 25px 40px
-	font-size: 30px
-	letter-spacing: 10px
-	color: $text-on-wight
-	text-align: center
-	background-color: rgba(0,0,0,0.4)
-
-
-// Footer
-footer
-	background-color: $second-accent
-	color: $text-on-wight
-	text-align: center
-	height: 50px
-	width: 100%
-	line-height: 50px
-	vertical-align: middle
-	//Home page
-	&.footer-absolute
-		position: absolute
-		margin-top: -50px
-
-
-@import "media" // Всегда в конце
+@import "media" // At the end
