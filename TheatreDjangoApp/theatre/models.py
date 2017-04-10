@@ -18,7 +18,16 @@ class Program(models.Model):
     time = models.TimeField()
     perfomance = models.ForeignKey(Perfomance)
     hall = models.ForeignKey(Hall)
+    #JSON format
+    #object = ProgrammManager
     places = models.CharField(max_length=2000)
+    def __unicode__(self):
+        return self.id
+    # def get_absolute_url(self):
+    #     return '/program/%d' % self.id
+    class Meta:
+        ordering = ['-time']
 
-
-
+# class ProgrammtManager(models.Manager):
+#     def last_sessions(self):
+#         return self.filter(time__gt<fwefw)
