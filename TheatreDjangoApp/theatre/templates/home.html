@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<header class="header-absolute">
+	<div class="container">
+		<div class="row">
+			<nav>
+				<div class="float-left">
+					<a href="#">Home</a>
+					<!--<a href="#">Work</a>-->
+					<a href="#">About</a>
+				</div>
+
+				<div class="float-right">
+
+                    {% if not request.user.is_authenticated %}
+					<a href="#" id="log-in">Log in</a>
+
+					{% else %}
+                    <a href="#">{{ request.user }}</a>
+					<a href="/logout">Log out</a>
+                    {% endif %}
+
+				</div>
+			</nav>
+		</div>
+	</div>
+</header>
+
+{% if not request.is_authenticated%}
+<section class="log-in">
+    <div class="container">
+        <div class="row">
+            <form action="#" method="post" class="col-sm-offset-4 col-sm-5">
+                <label for="login">Login</label>
+                <input type="text" id="login">
+                <label for="password">Password</label>
+                <input type="password" id="password">
+                <input type="submit" value="Enter">
+            </form>
+        </div>
+    </div>
+
+
+</section>
+{% else %}
+{% endif %}
+
+<section class="greeting" style="background-image: url('{% static "img/main_background.jpg" %}');">
+	<div class="center-text">
+		<h1>Shevchenko Theater</h1>
+	</div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer-absolute">
+    © 2017 Theatre Krivoy Rog. All copyrightes are secured.
+</footer>
+{% endblock %}
+
+
+
+
+
+
