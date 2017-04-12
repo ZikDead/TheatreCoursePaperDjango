@@ -16,7 +16,6 @@ def home(request):
             user = form.auth()
             if user is not None and user.is_active:
                 login(request, user)
-            else:
                 return HttpResponseRedirect('/')
     else:
         form = LogInForm()

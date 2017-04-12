@@ -3,16 +3,17 @@ from django.contrib.auth import authenticate, login
 
 
 class LogInForm(forms.Form):
-    username = forms.CharField (widget=forms.Textarea)
+    username = forms.CharField (widget=forms.TextInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
 
     # def __init__(self):
     #       self._user = user
 
-    # def clean(self):
-    #     if is_spam(self.cleaned_data):
-    #         raise forms.ValidationError("fewfwe", code='spam')
+    def clean(self):
+        if not authenticate(**self.cleaned_data):
+
+            raise forms.ValidationError("Неверный логин\пароль")
 
     def auth(self):
         user = authenticate(**self.cleaned_data)
