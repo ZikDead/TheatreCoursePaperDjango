@@ -1,7 +1,8 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
+from django.contrib.auth.decorators import login_required
 from .forms import LogInForm
 from django.contrib.auth import login, logout
 
@@ -26,26 +27,12 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-
+@require_GET
 def about(request):
     form = LogInForm()
     return render(request, 'about.html', {'form': form})
 
 
-# @require_POST
-# def login(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = auth.authenticate(username=username, password=password)
-#     if user is not None and user.is_active:
-#         # Правильный пароль и пользователь "активен"
-#         auth.login(request, user)
-#         # Перенаправление на "правильную" страницу
-#         return HttpResponseRedirect("/account/loggedin/")
-#     else:
-#         # Отображение страницы с ошибкой
-#         return HttpResponseRedirect("/account/invalid/")
-
-
+@login_required(login_url='/')
 def work(request):
     return  render(request, 'work.html')
