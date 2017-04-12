@@ -3,31 +3,7 @@
 {% load static %}
 
 {% block content %}
-<header class="header-absolute">
-	<div class="container">
-		<div class="row">
-			<nav>
-				<div class="float-left">
-					<a href="#">Home</a>
-					<!--<a href="#">Work</a>-->
-					<a href="#">About</a>
-				</div>
 
-				<div class="float-right">
-
-                    {% if not request.user.is_authenticated %}
-					<a id="log-in">Log in</a>
-
-					{% else %}
-                    <a>{{ request.user }}</a>
-					<a href="/logout">Log out</a>
-                    {% endif %}
-
-				</div>
-			</nav>
-		</div>
-	</div>
-</header>
 
 {% if not request.is_authenticated%}
 <section class="log-in">

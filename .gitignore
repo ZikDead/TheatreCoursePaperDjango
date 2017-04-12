@@ -1,5 +1,8 @@
-/HtmlCoding/app/css/
 /.idea/
-/HtmlCoding/node_modules/
 /TheatreDjangoApp/db.sqlite3
 /pas.txt
+/TheatreDjangoApp/theatre/migrations/__pycache__/
+/TheatreDjangoApp/theatre/__pycache__/
+/TheatreDjangoApp/django-app/__pycache__/
+/theatre-app-html/node_modules/
+/theatre-app-html/app/css/

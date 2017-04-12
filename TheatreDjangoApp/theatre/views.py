@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.views.decorators.http import require_POST
@@ -27,6 +27,11 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
+def about(request):
+    form = LogInForm()
+    return render(request, 'about.html', {'form': form})
+
+
 # @require_POST
 # def login(request):
 #     username = request.POST['username']
@@ -40,3 +45,7 @@ def logout_view(request):
 #     else:
 #         # Отображение страницы с ошибкой
 #         return HttpResponseRedirect("/account/invalid/")
+
+
+def work(request):
+    return  render(request, 'work.html')
