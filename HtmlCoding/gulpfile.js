@@ -21,7 +21,8 @@ gulp.task('common-js', function() {
 		])
 	.pipe(concat('common.min.js'))
 	.pipe(uglify())
-	.pipe(gulp.dest('app/js'));
+	.pipe(gulp.dest('app/js'))
+	.pipe(gulp.dest('../TheatreDjangoApp/theatre/static/js'));
 });
 
 gulp.task('js', ['common-js'], function() {
@@ -33,6 +34,7 @@ gulp.task('js', ['common-js'], function() {
 	.pipe(concat('scripts.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
+	.pipe(gulp.dest('../TheatreDjangoApp/theatre/static/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
@@ -42,8 +44,7 @@ gulp.task('browser-sync', function() {
 			baseDir: 'app'
 		},
 		notify: false,
-		// tunnel: true,
-		// tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
+
 	});
 });
 
@@ -54,6 +55,7 @@ gulp.task('sass', function() {
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
 	.pipe(gulp.dest('app/css'))
+	.pipe(gulp.dest('../TheatreDjangoApp/theatre/static/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
 

@@ -1,7 +1,10 @@
+
+
+
 <form action="/" method="post">
-    {% csrf_token %}
-{{ form.as_ul }}
+{% csrf_token %}
+{{ form }}
 <input type="submit">
-    </form>
+</form>
 
 <p> Username - {{ user }}</p>
