@@ -1,7 +1,21 @@
 from django.contrib import admin
-from .models import Perfomance, Hall, Program
+from .models import EventList, Hall, Performance
 
 
-admin.site.register(Perfomance)
-admin.site.register(Hall)
-admin.site.register(Program)
+@admin.register(EventList)
+class EventListAdmin(admin.ModelAdmin):
+    date_hierarchy = 'date'
+
+
+@admin.register(Hall)
+class HallAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Performance)
+class ProgramAdmin(admin.ModelAdmin):
+    pass
+
+
+
+
