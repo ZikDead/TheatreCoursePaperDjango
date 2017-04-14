@@ -1,13 +1,11 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import auth
-from django.views.decorators.http import require_POST, require_GET
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-from .forms import LogInForm
 from django.contrib.auth import login, logout
-
-#from django.core.urlresolvers import reverse
-# reverse ('name_of_url', args(10,), kwargs = {'pk':7})
+from .models import EventList
+from .forms import LogInForm
 
 
 def home(request):
@@ -35,4 +33,11 @@ def about(request):
 
 @login_required(login_url='/')
 def work(request):
-    return  render(request, 'work.html')
+    weekdays = EventList.get_last_days(10)
+    return render(request, 'work.html', {'weekdays': weekdays})
+
+
+def load_performance(request):
+    date = request.POST.get('date')
+    events = EventList.objects.filter(date=date)
+    return render(request, 'ajax-work-eventlist.html', {'events': events})

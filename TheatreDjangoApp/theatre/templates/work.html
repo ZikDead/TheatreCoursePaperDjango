@@ -17,15 +17,12 @@
                 </div>
 
                 <div class="float-right">
-
                     {% if not request.user.is_authenticated %}
                     <a href="#" id="log-in">Log in</a>
-
                     {% else %}
                     <a>{{ request.user }}</a>
                     <a href="/logout">Log out</a>
                     {% endif %}
-
                 </div>
             </nav>
         </div>
@@ -41,56 +38,33 @@
 			<h3>Schedule</h3>
             <a href="#" class="right-pagination"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 		    <a href="#" class="left-pagination"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-
 			<!--Perfomances-->
 			<div class="menu">
 
-
+                {% for date,  weekday in weekdays %}
 				<div>
-					<a href="#">
-						<p>23 of May</p>
-						<span>Tuesday</span>
+					<a class="menu-item">
+						<p class="date">{{ date }}</p>
+						<span>{{ weekday }}</span>
 					</a>
 				</div>
-
-			
+                {% endfor %}
 
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="perfomances">
+
+<section class="performances">
 	<div class="container">
 		<div class="row">
 
 
-            <div class="col-sm-3">
-                <div class="perfomance-item">
-
-                    <a href="#">
-                        <div class="poster" style="background-image: url({% static "img/post_example.jpeg" %})"></div>
-                    </a>
-
-
-                    <a href="#" class="tittle">Hello world perfomance</a>
-
-                    <div class="sessions">
-
-                        <a href="#" class="time">17:00</a>
-                        <a href="#" class="time">18:00</a>
-                        <a href="#" class="time">19:00</a>
-                        <a href="#" class="time">20:00</a>
-
-                    </div>
-
-                </div>
-            </div>
-
 
 		</div>
 	</div>
-
+    {% csrf_token %}
 </section>
 {% endblock %}
 

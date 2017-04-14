@@ -41,7 +41,39 @@ $(function() {
   })();
 
 
+  // Load performances
+  (function () {
 
+    $('.menu-item').click(function () {
+      var self = this;
+
+      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+      function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+      $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+              }
+          }
+      });
+
+      $.ajax({
+        url: '/load_performance',
+        type: 'POST',
+        data: {
+          date: $(self).find('.date').text(),
+        },
+        success: function (result) {
+            $('.performances').find('.row').html(result);
+        }
+      })
+    });
+
+    })();
 
 
 });

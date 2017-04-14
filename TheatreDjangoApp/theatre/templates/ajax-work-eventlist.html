@@ -1,0 +1,17 @@
+{% load static %}
+
+{% for event in events %}
+<div class="col-sm-3">
+    <div class="performance-item">
+
+        <div class="poster" style="background-image: url('{{ event.performance.img.url }}')"></div>
+
+        <a href="#" class="tittle">{{ event.performance.tittle }}</a>
+
+        <div class="sessions">
+            <a href="#" class="time">{{ event.time_start }} - {{ event.time_end }}</a>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
