@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
@@ -25,6 +25,9 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+
+
+
 @require_GET
 def about(request):
     form = LogInForm()
@@ -37,7 +40,17 @@ def work(request):
     return render(request, 'work.html', {'weekdays': weekdays})
 
 
-def load_performance(request):
+def load_performances(request):
     date = request.POST.get('date')
     events = EventList.objects.filter(date=date)
     return render(request, 'ajax-work-eventlist.html', {'events': events})
+
+def load_performance(request):
+    id = request.POST.get('id')
+    try:
+        id = int(id)
+    except ValueError:
+        return Http404('Wrong id')
+
+    event = EventList.objects.get(id=id)
+    return HttpResponse(event)

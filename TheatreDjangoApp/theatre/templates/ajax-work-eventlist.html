@@ -2,7 +2,7 @@
 
 {% for event in events %}
 <div class="col-sm-3">
-    <div class="performance-item">
+    <div class="performance-item" data-id-event="{{ event.id }}">
 
         <div class="poster" style="background-image: url('{{ event.performance.img.url }}')"></div>
 

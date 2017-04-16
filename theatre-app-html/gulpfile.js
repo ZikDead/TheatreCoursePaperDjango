@@ -14,21 +14,11 @@ var gulp           = require('gulp'),
 
 
 
-gulp.task('common-js', function() {
-	return gulp.src([
-		'app/js/common.js',
-		])
-	.pipe(concat('common.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('app/js'));
-});
-
-
-gulp.task('js', ['common-js'], function() {
+gulp.task('js', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/slick-carousel/slick/slick.min.js',
-		'app/js/common.min.js', // Всегда в конце
+		'app/js/common.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
 	.pipe(uglify())
@@ -52,21 +42,6 @@ gulp.task('watch', ['sass', 'js'], function() {
 });
 
 
-gulp.task('imagemin', function() {
-	return gulp.src('app/img/**/*')
-	.pipe(cache(imagemin()))
-	.pipe(gulp.dest('dist/img')); 
-});
 
-
-gulp.task('build', ['imagemin', 'sass', 'js'], function() {
-	var buildFonts = gulp.src([
-		'app/fonts/**/*',
-		]).pipe(gulp.dest('../TheatreDjangoApp/theatre/static/fonts'));
-
-});
-
-
-gulp.task('clearcache', function () { return cache.clearAll(); });
 
 gulp.task('default', ['watch']);

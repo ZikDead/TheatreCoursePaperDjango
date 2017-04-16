@@ -45,10 +45,10 @@ $(function() {
   (function () {
 
     $('.menu-item').click(function () {
-      var self = this;
+      var menu_item_clicked = this;
 
+      // Setup of Ajax to Django
       var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-
       function csrfSafeMethod(method) {
       // these HTTP methods do not require CSRF protection
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -62,18 +62,60 @@ $(function() {
       });
 
       $.ajax({
-        url: '/load_performance',
+        url: '/load_performances',
         type: 'POST',
         data: {
-          date: $(self).find('.date').text(),
+          date: $(menu_item_clicked).find('.date').text(),
         },
         success: function (result) {
-            $('.performances').find('.row').html(result);
+          $('.performances').find('.row').html(result);
+
+          $('div.performance-item').click(function () {
+
+            var performance_item_clicked = $(this);
+
+            //Animation  of loading
+            $('.hall-popup').blur();
+            // Restore defauls
+            $('.loader').css('opacity', '1');
+            $('.loaded').css('opacity', '0');
+            $('.hall-popup').animate({
+                height: "toggle",
+            }, 500, function () {
+
+                // When loaded
+                $.ajax({
+                  url: '/load_performance',
+                  type: 'POST',
+                  data: {
+                    id: performance_item_clicked.data('id-event'),
+                  },
+                  success: function (result) {
+
+                    $('.loader').animate({opacity: 0,}, 500);
+                    $('.loaded').animate({opacity: 1,}, 500);
+
+
+
+
+                  }
+
+                });
+
+            });
+
+          });
+
+
         }
-      })
+
+
+
+      });
+
     });
 
-    })();
+  })();
 
 
 });
