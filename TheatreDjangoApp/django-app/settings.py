@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ow^5_=g7ol-0x+l93l_)ffk)xpb^-7nr83bej&m_d1$c#1ah4v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -129,7 +129,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR,  'media/')
 MEDIA_URL = '/media/'
 
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Best pratice put it to .gitignore (file local_settings)
 # try:
 #     from  theatre.local_settings import *
