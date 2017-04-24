@@ -1,11 +1,13 @@
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.views.decorators.http import require_GET, require_POST
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from .models import EventList
 from .forms import LogInForm
+from django.template import loader
 
 
 def home(request):
@@ -26,8 +28,6 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-
-
 @require_GET
 def about(request):
     form = LogInForm()
@@ -40,17 +40,36 @@ def work(request):
     return render(request, 'work.html', {'weekdays': weekdays})
 
 
+@login_required(login_url='/')
 def load_performances(request):
     date = request.POST.get('date')
     events = EventList.objects.filter(date=date)
     return render(request, 'ajax-work-eventlist.html', {'events': events})
 
+
+@login_required(login_url='/')
 def load_performance(request):
-    id = request.POST.get('id')
+    id_event = request.POST.get('id')
     try:
-        id = int(id)
+        id_event = int(id_event)
     except ValueError:
         return Http404('Wrong id')
+    event = EventList.objects.get(id=id_event)
 
-    event = EventList.objects.get(id=id)
-    return HttpResponse(event)
+    html = loader.get_template('hall-%d.html' % event.hall.number_of_hall)
+    html = html.render({}, request)
+    return HttpResponse(json.dumps({'html': html, 'json': event.place,
+                                    'cost': float(event.performance.cost_of_ticket)}), content_type="application/json")
+
+
+@login_required(login_url='/')
+def save_performance(request):
+    id_event = request.POST.get('id')
+    try:
+        id_event = int(id_event)
+    except ValueError:
+        return Http404('Wrong id')
+    event = EventList.objects.get(id=id_event)
+    event.place = request.POST.get('json')
+    event.save()
+    return HttpResponse(request.POST)

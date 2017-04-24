@@ -6,6 +6,8 @@
   height: 600px
   z-index: 3
   display: none
+  .container
+    min-width: 1200px
 
 
   // Hall
@@ -21,23 +23,56 @@
       margin-right: 20px
   .variants
     padding-left: 182px
+    .place
+      margin-top: 5px
+
   h3
     text-align: center
     font-size: 24px
+  .places
+    height: 475px
+    line-height: 475px
+
+  .places-row
+    text-align: center
+    position: relative
+    width: 100%
+    vertical-align: middle
+    line-height: 100%
+    margin: 5px 0
+    user-select: none
+  .inner-wrapper
+    display: inline-block
+    width: 100%
   .place
-    height: 26px
-    width: 26px
+    height: 18px
+    width: 18px
     border-radius: 2px
-    float: left
+    display: inline-block
     margin-right: 2px
+    vertical-align: middle
+    line-height: 143%
+    user-select: none
+    &:hover
+      width: 26px
+      height: 26px
+      transition: .5s
+      color: #fff
   .good
     background-color: $color-place-good
+    color: $color-place-good
   .busy
     background-color: $color-place-busy
+    color: $color-place-busy
+    &:hover
+      width: 18px!important
+      height: 18px!important
   .super
     background-color: $color-place-super
+    color: $color-place-super
   .choosed
     background-color: $color-place-choosed
+    color: #fff
 
 
   .absolute-center

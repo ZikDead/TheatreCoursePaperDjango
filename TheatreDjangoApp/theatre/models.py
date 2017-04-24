@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date, timedelta
 
+
 class Hall(models.Model):
     number_of_hall = models.IntegerField()
 
@@ -21,31 +22,6 @@ class Performance(models.Model):
         return str(self.tittle)
 
 
-# class EventListManager(models.Manager):
-#     def get_last_events(self, limit: int):
-#         events = self.distinct('date')
-#         events = events.order_by('date')
-#         today = date.today()
-#         events = [events.filter(date__lte=today + timedelta(days=int(limit)), date__gte=today)]
-#
-#
-#         weekdays = {
-#             '0': 'Monday',
-#             '1': 'Tuesday',
-#             '2': 'Wednesday',
-#             '3': 'Thursday',
-#             '4': 'Friday',
-#             '5': 'Sunday',
-#             '6': 'Saturday'
-#         }
-#
-#         for i in range(len(events)):
-#             events[i] = [events[i], events[i].date.weekday()]
-#
-#         print(events)
-#         return events
-
-
 class EventList(models.Model):
     time_start = models.TimeField()
     time_end = models.TimeField()
@@ -54,7 +30,6 @@ class EventList(models.Model):
     performance = models.ForeignKey(Performance)
     hall = models.ForeignKey(Hall)
 
-    # object = EventListManager()
     # JSON format
     place = models.TextField(default='', blank=True)
 
@@ -77,7 +52,6 @@ class EventList(models.Model):
             date_text = today + timedelta(days=i)
             weekday_id = date_text.weekday()
             weekdays.append([str(date_text), weekdays_dict[str(weekday_id)]])
-
         return weekdays
 
     def __str__(self):
@@ -86,10 +60,3 @@ class EventList(models.Model):
     class Meta:
         ordering = ['-date', '-time_start']
         verbose_name_plural = 'EventList'
-
-
-
-
-
-#def get_absolute_url(self):
- #   return '/program/%d' % self.id
