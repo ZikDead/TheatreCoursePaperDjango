@@ -172,7 +172,7 @@ $(function() {
                             $('button').html(cost + '$');
                           }
                           else{
-                            $('button').html((parseFloat($('button').text())+parseFloat(cost) + '$').toString());
+                            $('button').html((parseFloat($('button').text())+parseFloat(cost)).toString() + '$');
                           }
 
 
@@ -180,6 +180,9 @@ $(function() {
                         $(this).removeClass('choosed');
                         $(this).addClass($(this).data('status-was'));
                         responce_arr[$(this).data('current_number')-1].status = $(this).data('status-was');
+                        $('#'+$(this).data(current_number)).remove();
+                        var cost = $(this).data('cost_of_ticket');
+                        $('button').html((parseFloat($('button').text())-parseFloat(cost) ).toString()+ '$');
                       }}
                     });
 
