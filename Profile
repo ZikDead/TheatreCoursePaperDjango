@@ -1,1 +1,1 @@
-web: gunicorn TheatreDjangoApp.wsgi --log-file -
+web: gunicorn django-app.wsgi --log-file -
